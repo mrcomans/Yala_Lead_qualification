@@ -1,14 +1,14 @@
 {
   "__accountComment_"  : "enter your 'account' copied from Snowsight: https://docs.snowflake.com/en/user-guide/admin-account-identifier#finding-the-organization-and-account-name-for-an-account",
   "__accountComment2_" : "then replace '.' with '-' ",
-  "account"            : "VSXMZBO-RE26326",
+  "account"            : "GKPEZUC-KH04070",
   "__userComment_"     : "enter your user name",
   "user"               : "MARK1971",
   "__credComment_"     : "either enter your password if you are confident it's safe to store it, or use externalbrowser authenticator",
   "__credComment2_"    : "delete the externalbrowser authenticator row if you don't want to use that option",
   "password"           : "Comansstraat16",
   "role"               : "ACCOUNTADMIN",
-  "warehouse"          : "ML_HOL_WH",
-  "database"           : "ML_HOL_DB",
-  "schema"             : "ML_HOL_SCHEMA"
+  "warehouse"          : "COMPUTE_WH",
+  "database"           : "YALA_DB",
+  "schema"             : "PUBLIC"
 }
