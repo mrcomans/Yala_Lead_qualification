@@ -5,3 +5,6 @@ Through this quickstart guide, you will explore what's new in Snowpark for Machi
 
 ## Step-By-Step Guide
 For prerequisites, environment setup, step-by-step guide and instructions, please refer to the [QuickStart Guide](https://quickstarts.snowflake.com/guide/intro_to_machine_learning_with_snowpark_ml_for_python/index.html?index=..%2F..index#0).
+
+## Modifications added to allow for Yala specifics
+Amongst other thinsg we added few Yala specific files based on the snowpark Lab files
