@@ -43,7 +43,16 @@ def main():
     tent_types = ["SUPERNOVA", "DREAMER", "AURORA", "AURORA VENUE", "COMET", "ECLIPSE", "GLAMPING LODGE", "SHIMMER", "SPARKLE", "STARDUST", "SUNSHINE", "TWILIGHT", "BELL TENT", "STELLA", "VENUE STRUCTURES"]
     selected_tents = st.multiselect("Select Tent Types", tent_types, default=["DREAMER", "ECLIPSE"])
     st.write("You selected:", selected_tents)
-       
+    
+    # Selectbox for Countries
+    countries = ["GERMANY", "NETHERLANDS", "ITALY","SPAIN","UNITED KINGDOM","UNITED STATES", "ROMANIA", "FRANCE", "CROATIA", "DENMARK", "SOUTH AFRICA", "GAMBIA", "MAURITIUS", "UGANDA", "JAPAN", "SWITZERLAND", "VIETNAM"
+    "SAUDI ARABIA", "MOROCCO", "MONTENEGRO", "SLOVENIA", "UNITED ARAB EMIRATES", "SERBIA", "BELGIUM", "QATAR", "GREECE", "EGYPT", "HUNGARY", "PHILIPPINES", "LEBANON", "SRI LANKA"
+    "CZECH REPUBLIC", "OMAN", "MACEDONIA", "MALDIVES", "UKRAINE", "GEORGIA", "ARMENIA", "JORDAN", "BANGLADESH", "IRAN", "GUADELOUPE", "NETHERLANDS ANTILLES", "BOSNIA AND HERZEGOWINA"
+    "ESTONIA", "PORTUGAL", "SINGAPORE", "HONG KONG", "BRAZIL", "INDIA", "CYPRUS", "BULGARIA", "PAKISTAN", "INDONESIA", "SOUTH KOREA", "NEW ZEALAND", "THAILAND", "ISRAEL"
+    "SWEDEN", "MOLDOVA", "PERU", "KUWAIT", "AUSTRIA", "MALAYSIA", "REUNION", "LUXEMBOURG"]
+    selected_country = st.selectbox("Country", countries)
+    st.write("You selected:", selected_country)
+    
     my_cur = conn.cursor()
     my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
     my_data_rows = my_cur.fetchall()
@@ -52,5 +61,5 @@ def main():
 if __name__ == "__main__":
     main()
     
-st.title('Connected with seperate main!')
+# st.title('Connected with seperate main!')
 
