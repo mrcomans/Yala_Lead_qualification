@@ -30,7 +30,8 @@ def process_input_data(form_data):
 # Function to score the lead
 def score_lead(model, data):
     # Use the model to score the data
-    return score
+    return True
+    # return score
 
 # Streamlit app
 def main():
@@ -87,7 +88,7 @@ def main():
             # Collect all form data into a dictionary
             form_data = data
             # Process the form data
-            process_input_data(form_data)
+            score_lead("Model", process_input_data(form_data))
         else:
             st.error("Please enter a valid email address.")
         
