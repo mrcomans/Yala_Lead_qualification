@@ -1,17 +1,22 @@
-import streamlit
+import streamlit as st
 import pandas
 import requests
 import snowflake.connector
 from urllib.error import URLError
 
-streamlit.title('Hello there let us score some leads')
+st.title('Hello there let us score some leads')
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
+# Function to connect to Snowflake
+def connect_to_snowflake():
+    my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+    return my_cnx
+# my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+conn = connect_to_snowflake()
+my_cur = conn.cursor()
 my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
 my_data_rows = my_cur.fetchall()
-streamlit.dataframe(my_data_rows)
+st.dataframe(my_data_rows)
 
-streamlit.title('Connected!')
+st.title('Connected!')
+
