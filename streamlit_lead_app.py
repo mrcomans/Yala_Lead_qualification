@@ -5,7 +5,7 @@ import snowflake.connector
 from urllib.error import URLError
 from datetime import time
 import re
-from sklearn.externals import joblib
+import joblib
 
 # from snowflake.ml.registry import model_registry
 # from snowflake.snowpark import Session
