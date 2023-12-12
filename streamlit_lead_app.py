@@ -6,7 +6,7 @@ from urllib.error import URLError
 from datetime import time
 import re
 
-st.header('Lead Scoring App')
+st.title('Lead Scoring App')
 
 # Function to check if valid email address
 def is_valid_email(email):
@@ -33,7 +33,7 @@ def score_lead(model, data):
 
 # Streamlit app
 def main():
-    st.title('Hello there let us score some leads')
+    st.header('Hello there let us score some leads')
     conn = connect_to_snowflake()
     
      # Webform creation
