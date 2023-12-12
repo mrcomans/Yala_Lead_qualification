@@ -27,7 +27,7 @@ def load_model_from_file():
     # Load the model from the file
     model = joblib.load('leads_modelv1.pkl')
     # return model
-    return True
+    return model
 
 def load_model_from_registry():
     # Create a Snowpark session
