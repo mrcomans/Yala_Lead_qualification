@@ -46,7 +46,7 @@ def load_model_from_registry():
     # st.write("models:", registry.list_models().to_pandas())
 
     # registry.list_models().to_pandas()
-    model = registry.load_model(model_name, model_version)
+    # model = registry.load_model(model_name, model_version)
 
     # return model
     return True
