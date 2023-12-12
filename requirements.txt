@@ -3,4 +3,3 @@ snowflake-connector-python
 snowflake-snowpark-python
 joblib
 numpy
-pickle
