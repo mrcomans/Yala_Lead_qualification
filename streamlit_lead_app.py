@@ -49,11 +49,10 @@ def load_model_from_registry():
     # Load the model v3
     st.write("db:", db)
     st.write("schema:", schema)
-    # registry.list_models().to_pandas()
-    # model = registry.load_model(model_name, model_version)
+    model = registry.load_model(model_name, model_version)
 
     # return model
-    return True
+    return model
 
 # Function to check if valid email address
 def is_valid_email(email):
