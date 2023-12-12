@@ -3,4 +3,3 @@ snowflake-connector-python
 joblib
 numpy
 pickle
-snowflake.ml
