@@ -32,12 +32,17 @@ def main():
      # Webform creation
     created_date = st.date_input("Created Date")
     # Time Input
-    selected_time = st.time_input("Select a time", time(8, 45))  # Default time is 08:45
+    selected_time = st.time_input("Created Time", time(8, 45))  # Default time is 08:45
     st.write("Selected Time:", selected_time)
 
     lead_description = st.text_area("Lead Description")
     lead_source_id = st.selectbox("Lead Source ID", [3367610, 2973396, 3314817, 2973397, 2985685, 3306719, 3377551, 3377552, 3377553, 3306720, 3418055, 3418056, 2985683, 2973398, 3056470, 3306721])  # Add all options
     # Add other form fields...
+    
+    # Multiselect for Tent Types
+    tent_types = ["SUPERNOVA", "DREAMER", "AURORA", "AURORA VENUE", "COMET", "ECLIPSE", "GLAMPING LODGE", "SHIMMER", "SPARKLE", "STARDUST", "SUNSHINE", "TWILIGHT", "BELL TENT", "STELLA", "VENUE STRUCTURES"]
+    selected_tents = st.multiselect("Select Tent Types", tent_types, default=["DREAMER", "ECLIPSE"])
+    st.write("You selected:", selected_tents)
        
     my_cur = conn.cursor()
     my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
