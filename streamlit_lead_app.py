@@ -84,7 +84,7 @@ def main():
     if st.button("Score lead"):
         if email and is_valid_email(email):
             # Collect all form data into a dictionary
-            form_data = {data}
+            form_data = data
             # Process the form data
             process_input_data(form_data)
         else:
