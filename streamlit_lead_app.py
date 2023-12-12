@@ -5,7 +5,7 @@ import snowflake.connector
 from urllib.error import URLError
 from datetime import time
 import re
-import joblib
+# import joblib
 
 # from snowflake.ml.registry import model_registry
 # from snowflake.snowpark import Session
@@ -23,8 +23,9 @@ def load_model_from_file():
     model_file_path = r'C:\Users\markt\OneDrive\Git\Yala_Lead_qualification\leads_modelv1.pkl'
 
     # Load the model from the file
-    model = joblib.load(model_file_path)
-    return model
+    # model = joblib.load(model_file_path)
+    # return model
+    return True
 
 def load_model_from_registry():
     # Create a Snowpark session
