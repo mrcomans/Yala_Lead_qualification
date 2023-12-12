@@ -16,6 +16,14 @@ def create_snowpark_session():
     session = Session.builder.configs(st.secrets["snowflake"]).create()
     return session
 
+def load_model_from_file():
+    # Path to your .pkl file
+    model_file_path = r'C:\Users\markt\OneDrive\Git\Yala_Lead_qualification\leads_modelv1.pkl'
+
+    # Load the model from the file
+    model = joblib.load(model_file_path)
+    return model
+
 def load_model_from_registry():
     # Create a Snowpark session
     session = create_snowpark_session()
@@ -29,12 +37,13 @@ def load_model_from_registry():
     model_version = 1
 
     # Create a registry object
-    registry = model_registry.ModelRegistry(session=session, database_name=db, schema_name=schema, create_if_not_exists=True)
+    # registry = model_registry.ModelRegistry(session=session, database_name=db, schema_name=schema, create_if_not_exists=True)
 
     # Load the model
-    model = registry.load_model(model_name, model_version)
+    # model = registry.load_model(model_name, model_version)
 
-    return model
+    # return model
+    return True
 
 # Function to check if valid email address
 def is_valid_email(email):
@@ -68,7 +77,10 @@ def main():
     conn = connect_to_snowflake()
     
     # load model from registry
-    model = load_model_from_registry()
+    model = load_model_from_file()
+
+    # load model from registry
+    # model = load_model_from_registry()
     
     # Webform creation
     created_date = st.date_input("Created Date")
