@@ -60,6 +60,12 @@ def main():
     selected_country = st.selectbox("Country", countries)
     st.write("You selected:", selected_country)
 
+    # Selectbox for Events
+    events = ["ATLANTICA_LAROCHELLE", "ATLANTICA_NIORT", "MESSE_KALKAR", "RECREATIEVAKBEURS_HARDENBERG", "SETT_MONTPELLIER", 
+    "SIPAC_PADOVA", "SUN_ITALY", "THE_LEISURE_SHOW_DUBAI"]
+    selected_event = st.selectbox("Event", events)
+    st.write("You selected:", selected_event)
+
     # Gender selection using radio buttons
     gender = st.radio("Gender", ["Male", "Female", "Other"])
     st.write("You selected:", gender)
