@@ -8,15 +8,15 @@ import re
 import joblib
 import numpy
 from snowflake.ml.registry import model_registry
-# from snowflake.snowpark import Session
+from snowflake.snowpark import Session
 
 st.title('Lead Scoring App')
 
 def create_snowpark_session():
     # Assuming your st.secrets["snowflake"] has all the necessary parameters
-    # session = Session.builder.configs(st.secrets["snowflake"]).create()
+    session = Session.builder.configs(st.secrets["snowflake"]).create()
     # return session
-    return True
+    return session
 
 def load_model_from_file():
     # Path to your .pkl file
@@ -29,11 +29,11 @@ def load_model_from_file():
 
 def load_model_from_registry():
     # Create a Snowpark session
-    # session = create_snowpark_session()
+    session = create_snowpark_session()
 
     # Get current database and schema
-    # db = session.get_current_database()
-    # schema = session.get_current_schema()
+    db = session.get_current_database()
+    schema = session.get_current_schema()
 
     # Define model name and version
     model_name = "leads_model"
