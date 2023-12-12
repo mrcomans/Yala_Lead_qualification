@@ -57,10 +57,10 @@ def main():
     gender = st.radio("Gender", ["Male", "Female", "Other"])
     st.write("You selected:", gender)
 
-    my_cur = conn.cursor()
-    my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
-    my_data_rows = my_cur.fetchall()
-    st.dataframe(my_data_rows)
+    # my_cur = conn.cursor()
+    # my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
+    # my_data_rows = my_cur.fetchall()
+    # st.dataframe(my_data_rows)
 
 if __name__ == "__main__":
     main()
