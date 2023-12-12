@@ -80,10 +80,10 @@ def main():
     conn = connect_to_snowflake()
     
     # load model from registry
-    model = load_model_from_file()
+    # model = load_model_from_file()
 
     # load model from registry
-    # model = load_model_from_registry()
+    model = load_model_from_registry()
     
     # Webform creation
     created_date = st.date_input("Created Date")
