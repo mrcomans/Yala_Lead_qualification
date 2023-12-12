@@ -88,7 +88,7 @@ def main():
     # load model from registry
     # model = load_model_from_file()
 
-    # load model from registry
+    # load model from registry final
     model = load_model_from_registry()
     
     # Webform creation
