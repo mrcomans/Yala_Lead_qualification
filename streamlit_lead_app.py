@@ -4,8 +4,15 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 from datetime import time
+import re
 
 st.title('Hello there let us score some leads')
+
+# Function to check if valid email address
+def is_valid_email(email):
+    """Check if the input is a valid email address."""
+    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    return re.match(pattern, email) is not None
 
 # Function to connect to Snowflake
 def connect_to_snowflake():
@@ -56,6 +63,16 @@ def main():
     # Gender selection using radio buttons
     gender = st.radio("Gender", ["Male", "Female", "Other"])
     st.write("You selected:", gender)
+    
+    # Text input for email
+    email = st.text_input("Email Address")
+
+    # Validate email
+    if email:  # Check if email is not empty
+        if is_valid_email(email):
+            st.success("Valid Email Address")
+        else:
+            st.error("Invalid Email Address")
 
     # my_cur = conn.cursor()
     # my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
