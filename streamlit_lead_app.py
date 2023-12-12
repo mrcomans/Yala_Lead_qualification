@@ -6,7 +6,35 @@ from urllib.error import URLError
 from datetime import time
 import re
 
+from snowflake.ml.registry import model_registry
+from snowflake.snowpark import Session
+
 st.title('Lead Scoring App')
+
+def create_snowpark_session():
+    # Assuming your st.secrets["snowflake"] has all the necessary parameters
+    session = Session.builder.configs(st.secrets["snowflake"]).create()
+    return session
+
+def load_model_from_registry():
+    # Create a Snowpark session
+    session = create_snowpark_session()
+
+    # Get current database and schema
+    db = session.get_current_database()
+    schema = session.get_current_schema()
+
+    # Define model name and version
+    model_name = "leads_model"
+    model_version = 1
+
+    # Create a registry object
+    registry = model_registry.ModelRegistry(session=session, database_name=db, schema_name=schema, create_if_not_exists=True)
+
+    # Load the model
+    model = registry.load_model(model_name, model_version)
+
+    return model
 
 # Function to check if valid email address
 def is_valid_email(email):
@@ -30,6 +58,11 @@ def process_input_data(form_data):
 # Function to score the lead
 def score_lead(model, data):
     # Use the model to score the data
+    # Define model name and version
+    model_name = "leads_model"
+    model_version = 1
+
+    get_model(model_name, model_version)
     return True
     # return score
 
@@ -38,7 +71,10 @@ def main():
     st.header('Hello there!, let us score some leads')
     conn = connect_to_snowflake()
     
-     # Webform creation
+    # load model from registry
+    model = load_model_from_registry()
+    
+    # Webform creation
     created_date = st.date_input("Created Date")
     # Time Input
     selected_time = st.time_input("Created Time", time(8, 45))  # Default time is 08:45
