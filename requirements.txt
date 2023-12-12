@@ -1,5 +1,6 @@
 # requirements.txt
 snowflake-connector-python
 snowflake-snowpark-python
+snowflake-ml-python
 joblib
 numpy
