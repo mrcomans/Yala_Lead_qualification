@@ -13,7 +13,7 @@ st.title('Lead Scoring App')
 
 def create_snowpark_session():
     # Assuming your st.secrets["snowflake"] has all the necessary parameters
-    session = Session.builder.configs(st.secrets["snowflake"]).create()
+    # session = Session.builder.configs(st.secrets["snowflake"]).create()
     # return session
     return True
 
