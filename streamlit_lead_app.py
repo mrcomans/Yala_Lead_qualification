@@ -6,6 +6,8 @@ from urllib.error import URLError
 from datetime import time
 import re
 import joblib
+import numpy
+
 
 # from snowflake.ml.registry import model_registry
 # from snowflake.snowpark import Session
