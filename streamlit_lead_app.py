@@ -32,5 +32,6 @@ def main():
     my_data_rows = my_cur.fetchall()
     st.dataframe(my_data_rows)
 
-st.title('Connected!')
+main()
+st.title('Connected with seperate main!')
 
