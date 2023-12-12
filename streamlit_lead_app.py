@@ -33,7 +33,7 @@ def score_lead(model, data):
 
 # Streamlit app
 def main():
-    st.header('Hello there let us score some leads')
+    st.header('Hello there!, let us score some leads')
     conn = connect_to_snowflake()
     
      # Webform creation
