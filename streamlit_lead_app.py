@@ -80,16 +80,22 @@ def main():
         else:
             st.error("Invalid Email Address")
 
+    # Submit button
+    if st.button("Score lead"):
+        if email and is_valid_email(email):
+            # Collect all form data into a dictionary
+            form_data = {data}
+            # Process the form data
+            process_input_data(form_data)
+        else:
+            st.error("Please enter a valid email address.")
+        
     # my_cur = conn.cursor()
     # my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
     # my_data_rows = my_cur.fetchall()
     # st.dataframe(my_data_rows)
 
-if __name__ == "__main__":
-    main()
-    
-# st.title('Connected with seperate main!')
-
+   
 data = {
 "CREATEDMONTH": [3.0],
 "CREATEDWEEK": [13.0],
@@ -202,4 +208,7 @@ data = {
 }
 
 # Create the DataFrame
-lead_instance_df = pd.DataFrame(data)
+# lead_instance_df = pd.DataFrame(data)
+
+if __name__ == "__main__":
+    main()
