@@ -37,7 +37,7 @@ def load_model_from_registry():
 
     # Define model name and version
     model_name = "leads_model"
-    model_version = 1
+    model_version = "1"
 
     # Create a registry object
     registry = model_registry.ModelRegistry(session=session, database_name=db, schema_name=schema, create_if_not_exists=True)
