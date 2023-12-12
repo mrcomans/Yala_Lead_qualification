@@ -6,7 +6,7 @@ from urllib.error import URLError
 from datetime import time
 import re
 
-from snowflake.ml.registry import model_registry
+# from snowflake.ml.registry import model_registry
 from snowflake.snowpark import Session
 
 st.title('Lead Scoring App')
@@ -59,10 +59,6 @@ def process_input_data(form_data):
 def score_lead(model, data):
     # Use the model to score the data
     # Define model name and version
-    model_name = "leads_model"
-    model_version = 1
-
-    get_model(model_name, model_version)
     return True
     # return score
 
