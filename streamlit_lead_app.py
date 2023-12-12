@@ -25,7 +25,7 @@ def load_model_from_file():
     model_file_path = r'C:\Users\markt\OneDrive\Git\Yala_Lead_qualification\leads_modelv1.pkl'
 
     # Load the model from the file
-    # model = joblib.load('leads_modelv1.pkl')
+    model = joblib.load('leads_modelv1.pkl')
     # return model
     return True
 
