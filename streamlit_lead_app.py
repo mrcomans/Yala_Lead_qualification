@@ -9,6 +9,7 @@ import joblib
 import numpy
 from snowflake.ml.registry import model_registry
 from snowflake.snowpark import Session
+from snowflake.ml._internal.utils import identifier
 
 st.title('Lead Scoring App')
 
@@ -31,9 +32,12 @@ def load_model_from_registry():
     # Create a Snowpark session
     session = create_snowpark_session()
 
+    db = identifier._get_unescaped_name(session.get_current_database())
+    schema = identifier._get_unescaped_name(session.get_current_schema())
+
     # Get current database and schema
-    db = session.get_current_database()
-    schema = session.get_current_schema()
+    # db = session.get_current_database()
+    # schema = session.get_current_schema()
 
     # Define model name and version
     model_name = "leads_model"
