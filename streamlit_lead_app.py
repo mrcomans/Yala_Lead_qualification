@@ -43,7 +43,7 @@ def load_model_from_registry():
     registry = model_registry.ModelRegistry(session=session, database_name=db, schema_name=schema, create_if_not_exists=True)
 
     # Load the model
-    registry.list_models().to_pandas()
+    # registry.list_models().to_pandas()
     # model = registry.load_model(model_name, model_version)
 
     # return model
