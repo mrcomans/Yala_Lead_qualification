@@ -42,7 +42,7 @@ def main():
     # Multiselect for Tent Types
     tent_types = ["SUPERNOVA", "DREAMER", "AURORA", "AURORA VENUE", "COMET", "ECLIPSE", "GLAMPING LODGE", "SHIMMER", "SPARKLE", "STARDUST", "SUNSHINE", "TWILIGHT", "BELL TENT", "STELLA", "VENUE STRUCTURES"]
     selected_tents = st.multiselect("Select Tent Types", tent_types, default=["DREAMER", "ECLIPSE"])
-    st.write("You selected:", selected_tents)
+    # st.write("You selected:", selected_tents)
     
     # Selectbox for Countries
     countries = ["GERMANY", "NETHERLANDS", "ITALY","SPAIN","UNITED KINGDOM","UNITED STATES", "ROMANIA", "FRANCE", "CROATIA", "DENMARK", "SOUTH AFRICA", "GAMBIA", "MAURITIUS", "UGANDA", "JAPAN", "SWITZERLAND", "VIETNAM"
@@ -52,7 +52,11 @@ def main():
     "SWEDEN", "MOLDOVA", "PERU", "KUWAIT", "AUSTRIA", "MALAYSIA", "REUNION", "LUXEMBOURG"]
     selected_country = st.selectbox("Country", countries)
     st.write("You selected:", selected_country)
-    
+
+    # Gender selection using radio buttons
+    gender = st.radio("Gender", ["Male", "Female", "Other"])
+    st.write("You selected:", gender)
+
     my_cur = conn.cursor()
     my_cur.execute("SELECT * FROM YALA_DB.PUBLIC.CONVERTEDONLY LIMIT 10")
     my_data_rows = my_cur.fetchall()
