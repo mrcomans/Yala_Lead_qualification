@@ -70,11 +70,12 @@ def connect_to_snowflake():
 def process_input_data(form_data):
     # Process the form_data to match the model input format
     # This is where you transform the data as per your Jupyter Notebook logic
-    return True
-    # return processed_data
+    processed_data = form_data
+    
+    return processed_data
 
 # Function to score the lead
-def score_lead(model, data):
+def score_lead(model, version, data):
     # Use the model to score the data
     # Define model name and version
     return True
@@ -141,7 +142,7 @@ def main():
             # Collect all form data into a dictionary
             form_data = data
             # Process the form data
-            score_lead("Model", process_input_data(form_data))
+            score_lead("leads_model", "1", process_input_data(form_data))
         else:
             st.error("Please enter a valid email address.")
         
