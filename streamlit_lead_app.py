@@ -43,7 +43,7 @@ def load_model_from_registry(model, version):
     model = registry.load_model(model, version)
 
     # debug information
-    st.write("model:", model)
+    # st.write("model:", model)
     
     # return model
     return model
