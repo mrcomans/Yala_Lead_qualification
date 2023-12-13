@@ -147,7 +147,8 @@ def main():
     if st.button("Score lead"):
         if email and is_valid_email(email):
             # Collect all form data into a dictionary
-            form_data = data
+            form_data = # Convert JSON to pandas DataFrame
+            form_data_df = pd.DataFrame.from_dict(data)
             # Process the form data
             
             # Define model name and version
@@ -155,7 +156,7 @@ def main():
             model_version = "1"
 
             model = load_model_from_registry(model_name, model_version)
-            score_lead(model, process_input_data(form_data))
+            score_lead(model, process_input_data(form_data_df))
 
         else:
             st.error("Please enter a valid email address.")
