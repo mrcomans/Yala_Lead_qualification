@@ -72,8 +72,10 @@ def process_input_data(form_data):
 def score_lead(model, data):
     # Use the model to score the data
     # Define model name and version
-    return True
+    st.write("Lead prediction", model.predict(data))
+
     # return score
+    return True
 
 # Streamlit app
 def main():
