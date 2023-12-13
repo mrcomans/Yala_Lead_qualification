@@ -74,17 +74,17 @@ def score_lead(model, data):
     
     # debug
     # Print the type of the model
-    st.write("Type of model:", type(model))
+    # st.write("Type of model:", type(model))
 
     # Print the type of the data
-    st.write("Type of data:", type(data))
+    # st.write("Type of data:", type(data))
 
     # If data is a DataFrame or similar, you might want to display a sample
-    if hasattr(data, 'head'):
-        st.write("Sample data:", data.head())
+    # if hasattr(data, 'head'):
+    #     st.write("Sample data:", data.head())
 
     # If it's a more complex type, or you want to see it in full, you can use:
-    st.write("Full data:", data)   
+    # st.write("Full data:", data)   
     
     probabilities = model.predict_proba(data)
 
