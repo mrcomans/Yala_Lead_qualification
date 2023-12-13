@@ -71,12 +71,25 @@ def process_input_data(form_data):
 # Function to score the lead
 def score_lead(model, data):
     # Use the model to score the data
-    # Define model name and version
+    
+    # debug
+    # Print the type of the model
+    st.write("Type of model:", type(model))
+
+    # Print the type of the data
+    st.write("Type of data:", type(data))
+
+    # If data is a DataFrame or similar, you might want to display a sample
+    if hasattr(data, 'head'):
+        st.write("Sample data:", data.head())
+
+    # If it's a more complex type, or you want to see it in full, you can use:
+    st.write("Full data:", data)   
     
     # st.write("Lead prediction", model.predict(data))
-
+    # model = model.to_xgboost()
     # return score
-    return model.predict(data)
+    return True
 
 # Streamlit app
 def main():
