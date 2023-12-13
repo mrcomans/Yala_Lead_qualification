@@ -28,29 +28,23 @@ def load_model_from_file():
     # return model
     return model
 
-def load_model_from_registry():
+def load_model_from_registry(model, version):
     # Create a Snowpark session
     session = create_snowpark_session()
 
+    # Get current database and schema
     db = identifier._get_unescaped_name(session.get_current_database())
     schema = identifier._get_unescaped_name(session.get_current_schema())
-
-    # Get current database and schema
-    # db = session.get_current_database()
-    # schema = session.get_current_schema()
-
-    # Define model name and version
-    model_name = "leads_model"
-    model_version = "1"
 
     # Create a registry object
     registry = model_registry.ModelRegistry(session=session, database_name=db, schema_name=schema, create_if_not_exists=True)
 
     # Load the model v3
-    st.write("db:", db)
-    st.write("schema:", schema)
-    model = registry.load_model(model_name, model_version)
+    model = registry.load_model(model, version)
 
+    # debug information
+    st.write("model:", model)
+    
     # return model
     return model
 
@@ -75,7 +69,7 @@ def process_input_data(form_data):
     return processed_data
 
 # Function to score the lead
-def score_lead(model, version, data):
+def score_lead(model, data):
     # Use the model to score the data
     # Define model name and version
     return True
@@ -89,9 +83,6 @@ def main():
     # load model from registry
     # model = load_model_from_file()
 
-    # load model from registry final
-    model = load_model_from_registry()
-    
     # Webform creation
     created_date = st.date_input("Created Date")
     # Time Input
@@ -142,7 +133,14 @@ def main():
             # Collect all form data into a dictionary
             form_data = data
             # Process the form data
-            score_lead("leads_model", "1", process_input_data(form_data))
+            
+            # Define model name and version
+            model_name = "leads_model"
+            model_version = "1"
+
+            model = load_model_from_registry(model_name, model_version)
+            score_lead(model, process_input_data(form_data))
+
         else:
             st.error("Please enter a valid email address.")
         
