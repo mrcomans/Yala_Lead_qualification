@@ -106,6 +106,11 @@ def main():
     
     # load model from registry
     # model = load_model_from_file()
+    # Define model name and version
+    model_name = "leads_model"
+    model_version = "1"
+
+    model = load_model_from_registry(model_name, model_version)
 
     # Webform creation
     created_date = st.date_input("Created Date")
@@ -159,11 +164,6 @@ def main():
             form_data_df = pd.DataFrame.from_dict(data)
             # Process the form data
             
-            # Define model name and version
-            model_name = "leads_model"
-            model_version = "1"
-
-            model = load_model_from_registry(model_name, model_version)
             score_lead(model, process_input_data(form_data_df))
 
         else:
