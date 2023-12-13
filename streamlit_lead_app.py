@@ -147,7 +147,7 @@ def main():
     if st.button("Score lead"):
         if email and is_valid_email(email):
             # Collect all form data into a dictionary
-            form_data = # Convert JSON to pandas DataFrame
+            # Convert JSON to pandas DataFrame
             form_data_df = pd.DataFrame.from_dict(data)
             # Process the form data
             
