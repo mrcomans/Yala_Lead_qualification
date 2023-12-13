@@ -86,7 +86,14 @@ def score_lead(model, data):
     # If it's a more complex type, or you want to see it in full, you can use:
     st.write("Full data:", data)   
     
-    st.write("prediction", model.predict_proba(data["PREDICT_PROBA_"]))
+    probabilities = model.predict_proba(data)
+
+    # If you want to add a custom prefix to the output columns, you might need to handle it manually
+    # since predict_proba usually returns a numpy array, not a DataFrame
+    # For example:
+    df_probabilities = pd.DataFrame(probabilities, columns=['PREDICT_PROBA_0', 'PREDICT_PROBA_1'])
+    
+    st.write("prediction", df_probabilities)
     # st.write("Lead prediction", model.predict(data))
     # model = model.to_xgboost()
     # return score
