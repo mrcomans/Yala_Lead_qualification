@@ -86,6 +86,7 @@ def score_lead(model, data):
     # If it's a more complex type, or you want to see it in full, you can use:
     st.write("Full data:", data)   
     
+    st.write("prediction", model.predict_proba(data))
     # st.write("Lead prediction", model.predict(data))
     # model = model.to_xgboost()
     # return score
