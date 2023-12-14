@@ -10,6 +10,7 @@ import numpy
 from snowflake.ml.registry import model_registry
 from snowflake.snowpark import Session
 from snowflake.ml._internal.utils import identifier
+import json
 
 st.title('Lead Scoring App')
 
