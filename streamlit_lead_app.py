@@ -86,7 +86,7 @@ def process_selected_time(selected_time):
     
     return pr_hour
 
-def process_selected_lead_description(selected_lead_description)
+def process_selected_lead_description(selected_lead_description):
 
     # Extract normalized lead description
     pr_selected_lead_description_norm = len(selected_lead_description) / 3100
