@@ -105,13 +105,7 @@ def main():
     st.header('Hello there!, let us score some leads')
     conn = connect_to_snowflake()
     
-    # load model from registry
-    # model = load_model_from_file()
-    # Define model name and version
-    model_name = "leads_model"
-    model_version = "1"
 
-    model = load_model_from_registry(model_name, model_version)
 
     # Webform creation
     selected_created_date = st.date_input("Created Date")
@@ -160,6 +154,13 @@ def main():
     # Submit button
     if st.button("Score lead"):
         if selected_email and is_valid_email(selected_email):
+            # load model from registry
+            # model = load_model_from_registry()
+            # Define model name and version
+            model_name = "leads_model"
+            model_version = "1"
+            model = load_model_from_registry(model_name, model_version)
+
             # Collect all form data into a dictionary
             # Convert JSON to pandas DataFrame
             template_data_df = pd.DataFrame.from_dict(data)
@@ -167,8 +168,6 @@ def main():
             # form field values (): 
             #   selected_created_date, selected_time, selected_lead_description, selected_lead_source_id, 
             #   selected_tents, selected_country, selected_event, selected_gender, selected_email
-            # Convert the JSON string in selected_tents to a dictionary
-            st.write("selected_tents", selected_tents)
             form_data = {
                 "SELECTEDCREATEDDATE": [selected_created_date],
                 "SELECTEDTIME": [selected_time],
@@ -180,10 +179,7 @@ def main():
                 "SELECTEDGENDER": [selected_gender],
                 "SELECTEDMAIL": [selected_email]
             }
-            submitted_values_df = pd.DataFrame.from_dict(form_data)
-            st.write("form_data", form_data)
-            st.write("submitted_values_df", submitted_values_df)
-            
+            submitted_values_df = pd.DataFrame.from_dict(form_data)            
             # selected_tents_dict = json.loads(selected_tents)
             
             score_lead(model, process_input_data(template_data_df, submitted_values_df))
