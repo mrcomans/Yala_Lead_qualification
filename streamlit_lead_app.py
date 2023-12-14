@@ -177,7 +177,7 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Update the processed_data DataFrame
     processed_data.loc[0, 'LEN_LEADDESC_NORM'] = pr_selected_lead_description_norm 
-    st.write('Leaddescription norm', pr_selected_lead_description_norm)
+    # st.write('Leaddescription norm', pr_selected_lead_description_norm)
            
 ##### Extract SELECTEDLEADSOURCEID value
     selected_leadsourceid = submitted_values_df.loc[0, 'SELECTEDLEADSOURCEID']
