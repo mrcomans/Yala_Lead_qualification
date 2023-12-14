@@ -262,7 +262,7 @@ def process_input_data(template_data_df, submitted_values_df):
 
 # Function to score the lead
 def score_lead(model, data):
-    # Use the model to score the data
+    # Use the model to score the data 
     probabilities = model.predict_proba(data)
 
     # If you want to add a custom prefix to the output columns, you might need to handle it manually
