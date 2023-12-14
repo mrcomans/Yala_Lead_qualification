@@ -22,14 +22,13 @@ def create_snowpark_session():
     # return session
     return session
 
-def load_model_from_file():
+# def load_model_from_file():
     # Path to your .pkl file
-    model_file_path = r'C:\Users\markt\OneDrive\Git\Yala_Lead_qualification\leads_modelv1.pkl'
+    # model_file_path = r'C:\Users\markt\OneDrive\Git\Yala_Lead_qualification\leads_modelv1.pkl'
 
     # Load the model from the file
-    model = joblib.load('leads_modelv1.pkl')
+    # model = joblib.load('leads_modelv1.pkl')
     # return model
-    return model
 
 def load_model_from_registry(model, version):
     # Create a Snowpark session
@@ -156,9 +155,9 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'CREATEDMONTH'] = pr_month
     processed_data.loc[0, 'CREATEDWEEK'] = pr_week
     processed_data.loc[0, 'CREATEDDAY'] = pr_day
-    st.write('Month', pr_month)
-    st.write('Week', pr_week)
-    st.write('Day', pr_day)
+    # st.write('Month', pr_month)
+    # st.write('Week', pr_week)
+    # st.write('Day', pr_day)
 
 ##### Extract SELECTEDTIME value
     selected_time = submitted_values_df.loc[0, 'SELECTEDTIME']
@@ -168,7 +167,7 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Update the processed_data DataFrame
     processed_data.loc[0, 'CREATEDHOUR'] = pr_hour 
-    st.write('Hour', pr_hour)
+    # st.write('Hour', pr_hour)
     
 ##### Extract SELECTEDLEADDESCRIPTION value
     selected_lead_description = submitted_values_df.loc[0, 'SELECTEDLEADDESCRIPTION']
@@ -188,7 +187,7 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Update the processed_data DataFrame
     processed_data.loc[0, 'LS_'+ str(pr_selected_leadsourceid)] = 1.0 
-    st.write('leadsourceid', pr_selected_leadsourceid)
+    # st.write('leadsourceid', pr_selected_leadsourceid)
 
 ##### TODO Extract SELECTEDTENTS value FINAL
     selected_tents = submitted_values_df.loc[0, 'SELECTEDTENTS']
@@ -204,7 +203,7 @@ def process_input_data(template_data_df, submitted_values_df):
         processed_data.loc[0, 'TENT_TYPE_ENCODED_' + str(pr_selected_tent)] = 1.0
 
         # Write the processed tent to Streamlit output
-        st.write('tent', pr_selected_tent)
+        # st.write('tent', pr_selected_tent)
 
     # selected_tents = submitted_values_df.loc[0, 'SELECTEDTENTS']
 
@@ -225,7 +224,7 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Update the processed_data DataFrame
     processed_data.loc[0, 'AD_'+ pr_selected_country] = 1.0 
-    st.write('country', pr_selected_country)
+    # st.write('country', pr_selected_country)
     
 ##### Extract SELECTEDEVENT value
     selected_event = submitted_values_df.loc[0, 'SELECTEDEVENT']
@@ -235,7 +234,7 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Update the processed_data DataFrame
     processed_data.loc[0, 'EVENT_ENCODED_'+ pr_selected_event] = 1.0 
-    st.write('event', pr_selected_event)
+    # st.write('event', pr_selected_event)
 
 ##### Extract SELECTEDGENDER value
     selected_gender = submitted_values_df.loc[0, 'SELECTEDGENDER']
@@ -245,19 +244,19 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Update the processed_data DataFrame
     processed_data.loc[0, 'GENDER_ENCODED_'+ pr_selected_gender] = 1.0 
-    st.write('gender', pr_selected_gender)
+    # st.write('gender', pr_selected_gender)
 
 ##### Extract SELECTEDMAIL value
     selected_mail = submitted_values_df.loc[0, 'SELECTEDMAIL']
 
     # Process the SELECTEDMAIL
     pr_selected_mail = process_selected_mail(selected_mail)
-    st.write('mail', pr_selected_mail)
+    # st.write('mail', pr_selected_mail)
     
     # Update the processed_data DataFrame
     processed_data.loc[0, 'ET_' + pr_selected_mail] = 1.0 
         
-    st.write(processed_data)
+    # st.write(processed_data)
         
     return processed_data
 
