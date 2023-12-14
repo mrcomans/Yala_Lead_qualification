@@ -134,6 +134,10 @@ def process_selected_mail(selected_mail):
     
     return email_type
 
+def process_selected_tenttypes(selected_tenttypes):
+    
+    return selected_tenttypes
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
@@ -141,7 +145,7 @@ def process_input_data(template_data_df, submitted_values_df):
     # processed_data_df = template_data_df
     processed_data = template_data_df.copy()
 
-    # Extract SELECTEDCREATEDDATE value
+##### Extract SELECTEDCREATEDDATE value
     selected_created_date = submitted_values_df.loc[0, 'SELECTEDCREATEDDATE']
 
     # Process the SELECTEDCREATEDDATE
@@ -156,7 +160,7 @@ def process_input_data(template_data_df, submitted_values_df):
     st.write('Week', pr_week)
     st.write('Day', pr_day)
 
-    # Extract SELECTEDTIME value
+##### Extract SELECTEDTIME value
     selected_time = submitted_values_df.loc[0, 'SELECTEDTIME']
 
     # Process the SELECTEDTIME
@@ -166,7 +170,7 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'CREATEDHOUR'] = pr_hour 
     st.write('Hour', pr_hour)
     
-    # Extract SELECTEDLEADDESCRIPTION value
+##### Extract SELECTEDLEADDESCRIPTION value
     selected_lead_description = submitted_values_df.loc[0, 'SELECTEDLEADDESCRIPTION']
 
     # Process the SELECTEDLEADDESCRIPTION
@@ -176,7 +180,7 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'LEN_LEADDESC_NORM'] = pr_selected_lead_description_norm 
     st.write('Leaddescription norm', pr_selected_lead_description_norm)
            
-    # Extract SELECTEDLEADSOURCEID value
+##### Extract SELECTEDLEADSOURCEID value
     selected_leadsourceid = submitted_values_df.loc[0, 'SELECTEDLEADSOURCEID']
 
     # Process the SELECTEDLEADSOURCEID
@@ -186,7 +190,17 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'LS_'+ str(pr_selected_leadsourceid)] = 1.0 
     st.write('leadsourceid', pr_selected_leadsourceid)
 
-   # Extract SELECTEDCOUNTRY value
+##### TODO Extract SELECTEDTENTTYPES value
+    # selected_tenttypes = submitted_values_df.loc[0, 'SELECTEDTENTTYPES']
+
+    # Process the SELECTEDTENTTYPES
+    # pr_selected_tenttypes = process_selected_tenttypes(selected_tenttypes)
+
+    # Update the processed_data DataFrame
+    # processed_data.loc[0, 'TENT_TYPE_ENCODED_'+ str(pr_selected_tenttypes)] = 1.0 
+    # st.write('tenttypes', pr_selected_tenttypes)
+
+##### Extract SELECTEDCOUNTRY value
     selected_country = submitted_values_df.loc[0, 'SELECTEDCOUNTRY']
 
     # Process the SELECTEDCOUNTRY
@@ -196,7 +210,7 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'AD_'+ pr_selected_country] = 1.0 
     st.write('country', pr_selected_country)
     
-   # Extract SELECTEDEVENT value
+##### Extract SELECTEDEVENT value
     selected_event = submitted_values_df.loc[0, 'SELECTEDEVENT']
 
     # Process the SELECTEDEVENT
@@ -206,7 +220,7 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'EVENT_ENCODED_'+ pr_selected_event] = 1.0 
     st.write('event', pr_selected_event)
 
-    # Extract SELECTEDGENDER value
+##### Extract SELECTEDGENDER value
     selected_gender = submitted_values_df.loc[0, 'SELECTEDGENDER']
 
     # Process the SELECTEDGENDER
@@ -216,7 +230,7 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'GENDER_ENCODED_'+ pr_selected_gender] = 1.0 
     st.write('gender', pr_selected_gender)
 
-    # Extract SELECTEDMAIL value
+##### Extract SELECTEDMAIL value
     selected_mail = submitted_values_df.loc[0, 'SELECTEDMAIL']
 
     # Process the SELECTEDMAIL
@@ -225,7 +239,6 @@ def process_input_data(template_data_df, submitted_values_df):
     
     # Update the processed_data DataFrame
     processed_data.loc[0, 'ET_' + pr_selected_mail] = 1.0 
-
         
     st.write(processed_data)
         
