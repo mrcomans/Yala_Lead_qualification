@@ -9,6 +9,7 @@ import joblib
 import numpy
 from snowflake.ml.registry import model_registry
 from snowflake.snowpark import Session
+import snowflake.snowpark.functions as F
 from snowflake.ml._internal.utils import identifier
 import json
 
@@ -112,6 +113,24 @@ def process_selected_gender(selected_gender):
     
     return selected_gender
 
+def process_selected_mail(selected_mail):
+    # List of identified private email domains
+    private_domains = [
+        'gmail.com', 'hotmail.com', 'orange.fr', 'wanadoo.fr', 'hotmail.fr',
+        'yahoo.com', 'outlook.com', 'hotmail.co.uk', 'me.com', 'gmx.de',
+        'icloud.com', 'yahoo.it', 'libero.it', 'web.de', 'kpnmail.nl',
+        'yahoo.de', 'yahoo.fr', 'free.fr', 'telenet.be', 'live.fr',
+        'otenet.gr', 'mac.com', 'yahoo.co.uk', 'laposte.net', 'uol.com.br',
+        'casema.nl', 'aol.com', 't-online.de', 'unknown.com', 'yahoo.in',
+        'gmx.fr', 'mail.com', 'mail.ru', 'live.it', 'msn.com',
+        'yahoo.com.sg', 'hotmail.it', 'googlemail.com', 'hotmail.nl', 'ziggo.nl'
+    ]
+
+    domain = F.regexp_extract(selected_mail, '@([a-zA-Z0-9.-]+)$', 1)
+    email_type =  F.when(domain.isin(private_domains), "PRIVATE").otherwise("BUSINESS")
+    
+    return email_type
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
@@ -193,7 +212,17 @@ def process_input_data(template_data_df, submitted_values_df):
     # Update the processed_data DataFrame
     processed_data.loc[0, 'GENDER_ENCODED_'+ pr_selected_gender] = 1.0 
     st.write('gender', pr_selected_gender)
-    
+
+    # Extract SELECTEDMAIL value
+    selected_mail = submitted_values_df.loc[0, 'SELECTEDMAIL']
+
+    # Process the SELECTEDMAIL
+    pr_selected_mail = process_selected_mail(selected_mail)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'ET_'+ pr_selected_mail] = 1.0 
+    st.write('mail', pr_selected_mail)
+        
     st.write(processed_data)
         
     return processed_data
