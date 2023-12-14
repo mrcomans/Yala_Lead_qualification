@@ -144,7 +144,7 @@ def main():
     st.write("You selected:", selected_event)
 
     # Gender selection using radio buttons
-    selected_gender = st.radio("Gender", ["Male", "Female", "Other"])
+    selected_gender = st.radio("Gender", ["MALE", "FEMALE", "OTHER"])
     st.write("You selected:", selected_gender)
     
     # Text input for email
