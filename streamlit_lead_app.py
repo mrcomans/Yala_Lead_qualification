@@ -218,10 +218,11 @@ def process_input_data(template_data_df, submitted_values_df):
 
     # Process the SELECTEDMAIL
     pr_selected_mail = process_selected_mail(selected_mail)
-
-    # Update the processed_data DataFrame
-    processed_data.loc[0, 'ET_'+ pr_selected_mail] = 1.0 
     st.write('mail', pr_selected_mail)
+    
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'ET_' + pr_selected_mail] = 1.0 
+
         
     st.write(processed_data)
         
