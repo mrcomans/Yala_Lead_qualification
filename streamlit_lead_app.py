@@ -86,6 +86,13 @@ def process_selected_time(selected_time):
     
     return pr_hour
 
+def process_selected_lead_description(selected_lead_description)
+
+    # Extract normalized lead description
+    pr_selected_lead_description_norm = len(selected_lead_description) / 3100
+    
+    return float(pr_selected_lead_description_norm)
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
@@ -104,37 +111,36 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'CREATEDMONTH'] = pr_month
     processed_data.loc[0, 'CREATEDWEEK'] = pr_week
     processed_data.loc[0, 'CREATEDDAY'] = pr_day
+    st.write('Month', pr_month)
+    st.write('Week', pr_week)
+    st.write('Day', pr_day)
 
     # Extract SELECTEDTIME value
     selected_time = submitted_values_df.loc[0, 'SELECTEDTIME']
 
     # Process the SELECTEDTIME
     pr_hour = process_selected_time(selected_time)
-    st.write('Hour', pr_hour)
 
     # Update the processed_data DataFrame
-    processed_data.loc[0, 'CREATEDHOUR'] = pr_hour        
+    processed_data.loc[0, 'CREATEDHOUR'] = pr_hour 
+    st.write('Hour', pr_hour)
+    
+    # Extract SELECTEDLEADDESCRIPTION value
+    selected_lead_description = submitted_values_df.loc[0, 'SELECTEDLEADDESCRIPTION']
+
+    # Process the SELECTEDLEADDESCRIPTION
+    pr_selected_lead_description_norm = process_selected_lead_description(selected_lead_description)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'LEN_LEADDESC_NORM'] = pr_selected_lead_description_norm 
+    st.write('Leaddescription norm', pr_selected_lead_description_norm)
+           
     
     return processed_data
 
 # Function to score the lead
 def score_lead(model, data):
     # Use the model to score the data
-    
-    # debug
-    # Print the type of the model
-    # st.write("Type of model:", type(model))
-
-    # Print the type of the data
-    # st.write("Type of data:", type(data))
-
-    # If data is a DataFrame or similar, you might want to display a sample
-    # if hasattr(data, 'head'):
-    #     st.write("Sample data:", data.head())
-
-    # If it's a more complex type, or you want to see it in full, you can use:
-    # st.write("Full data:", data)   
-    
     probabilities = model.predict_proba(data)
 
     # If you want to add a custom prefix to the output columns, you might need to handle it manually
