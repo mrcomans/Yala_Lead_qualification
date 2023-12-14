@@ -13,6 +13,7 @@ from snowflake.ml._internal.utils import identifier
 import json
 
 st.title('Lead Scoring App')
+model = None
 
 def create_snowpark_session():
     # Assuming your st.secrets["snowflake"] has all the necessary parameters
@@ -159,7 +160,7 @@ def main():
             # Define model name and version
             model_name = "leads_model"
             model_version = "1"
-            if model is None or not model:
+            if model is None:
                 model = load_model_from_registry(model_name, model_version)
 
             # Collect all form data into a dictionary
