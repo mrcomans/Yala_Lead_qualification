@@ -190,7 +190,7 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'LS_'+ str(pr_selected_leadsourceid)] = 1.0 
     st.write('leadsourceid', pr_selected_leadsourceid)
 
-##### TODO Extract SELECTEDTENTS value
+##### TODO Extract SELECTEDTENTS value FINAL
     selected_tents = submitted_values_df.loc[0, 'SELECTEDTENTS']
 
     # Assuming process_selected_tents function processes each tent name
