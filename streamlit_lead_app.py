@@ -180,7 +180,10 @@ def main():
                 "SELECTEDGENDER": [selected_gender],
                 "SELECTEDMAIL": [selected_email]
             }
+            submitted_values_df = pd.DataFrame.from_dict(form_data)
             st.write("form_data", form_data)
+            st.write("submitted_values_df", submitted_values_df)
+            
             # selected_tents_dict = json.loads(selected_tents)
             
             score_lead(model, process_input_data(template_data_df))
