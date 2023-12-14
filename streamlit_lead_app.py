@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import snowflake.connector
 from urllib.error import URLError
-from datetime
+import datetime
 import re
 import joblib
 import numpy
