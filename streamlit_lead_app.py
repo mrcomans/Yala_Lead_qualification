@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import snowflake.connector
 from urllib.error import URLError
-from datetime import time
+from datetime
 import re
 import joblib
 import numpy
@@ -62,11 +62,43 @@ def connect_to_snowflake():
     return my_cnx
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
+# Function to process selected created date
+def process_selected_created_date(selected_date_str):
+    # Assuming the format is "datetime.date(YYYY, MM, DD)"
+    # Extract the date components
+    date_parts = selected_date_str.strip("datetime.date()").split(',')
+    year, month, day = map(int, date_parts)
+
+    # Create a datetime object
+    date_obj = datetime.date(year, month, day)
+
+    # Extract year, month, week number, and day
+    pr_createdyear = date_obj.year
+    pr_createdmonth = date_obj.month
+    pr_createdweek = date_obj.isocalendar()[1]
+    pr_createdday = date_obj.day
+
+    return pr_createdyear, pr_createdmonth, pr_createdweek, pr_createdday
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
     # This is where you transform the data as per your Jupyter Notebook logic
-    processed_data = template_data_df
+    # processed_data_df = template_data_df
+    processed_data = template_data_df.copy()
+
+    # Extract SELECTEDCREATEDDATE value
+    selected_created_date = submitted_values_df.loc[0, 'SELECTEDCREATEDDATE']
+
+    # Process the SELECTEDCREATEDDATE
+    pr_year, pr_month, pr_week, pr_day = process_selected_created_date(selected_created_date)
+
+    # Update the processed_data DataFrame
+    # processed_data.loc[0, 'CREATEDYEAR'] = pr_year
+    processed_data.loc[0, 'CREATEDMONTH'] = pr_month
+    processed_data.loc[0, 'CREATEDWEEK'] = pr_week
+    processed_data.loc[0, 'CREATEDDAY'] = pr_day
+        
     
     return processed_data
 
