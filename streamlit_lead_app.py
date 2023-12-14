@@ -104,6 +104,9 @@ def process_selected_country(selected_country):
     
     return pr_selected_country
 
+def process_selected_event(selected_event):
+    
+    return selected_event
 
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
@@ -167,6 +170,16 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'AD_'+ pr_selected_country] = 1.0 
     st.write('country', pr_selected_country)
     
+   # Extract SELECTEDEVENT value
+    selected_event = submitted_values_df.loc[0, 'SELECTEDEVENT']
+
+    # Process the SELECTEDEVENT
+    pr_selected_event = process_selected_event(selected_event)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'EVENT_ENCODED_'+ pr_selected_event] = 1.0 
+    st.write('event', pr_selected_event)
+
     st.write(processed_data)
         
     return processed_data
