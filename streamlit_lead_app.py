@@ -91,7 +91,7 @@ def process_selected_lead_description(selected_lead_description):
     # Extract normalized lead description
     pr_selected_lead_description_norm = len(selected_lead_description) / 3100
     
-    return float(pr_selected_lead_description_norm)
+    return float(round(pr_selected_lead_description_norm), 4)
 
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
