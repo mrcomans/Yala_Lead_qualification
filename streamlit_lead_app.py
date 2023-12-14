@@ -63,20 +63,19 @@ def connect_to_snowflake():
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
 # Function to process selected created date
-def process_selected_created_date(selected_date_str):
+def process_selected_created_date(selected_date):
     # Assuming the format is "datetime.date(YYYY, MM, DD)"
     # Extract the date components
-    date_parts = selected_date_str.strip("datetime.date()").split(',')
-    year, month, day = map(int, date_parts)
-
+    # date_parts = selected_date_str.strip("datetime.date()").split(',')
+    # year, month, day = map(int, date_parts)
     # Create a datetime object
-    date_obj = datetime.date(year, month, day)
+    # date_obj = datetime.date(year, month, day)
 
     # Extract year, month, week number, and day
-    pr_createdyear = date_obj.year
-    pr_createdmonth = date_obj.month
-    pr_createdweek = date_obj.isocalendar()[1]
-    pr_createdday = date_obj.day
+    pr_createdyear = selected_date.year
+    pr_createdmonth = selected_date.month
+    pr_createdweek = selected_date.isocalendar()[1]
+    pr_createdday = selected_date.day
 
     return pr_createdyear, pr_createdmonth, pr_createdweek, pr_createdday
 
@@ -138,8 +137,6 @@ def main():
     global model
     st.header('Hello there!, let us score some leads')
     conn = connect_to_snowflake()
-    
-
 
     # Webform creation
     selected_created_date = st.date_input("Created Date")
