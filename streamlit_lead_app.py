@@ -62,10 +62,10 @@ def connect_to_snowflake():
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
 # Function to process form data to match model input format
-def process_input_data(form_data):
+def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
     # This is where you transform the data as per your Jupyter Notebook logic
-    processed_data = form_data
+    processed_data = template_data_df
     
     return processed_data
 
@@ -186,7 +186,7 @@ def main():
             
             # selected_tents_dict = json.loads(selected_tents)
             
-            score_lead(model, process_input_data(template_data_df))
+            score_lead(model, process_input_data(template_data_df, submitted_values_df))
 
         else:
             st.error("Please enter a valid email address.")
