@@ -168,7 +168,8 @@ def main():
             #   selected_created_date, selected_time, selected_lead_description, selected_lead_source_id, 
             #   selected_tents, selected_country, selected_event, selected_gender, selected_email
             # Convert the JSON string in selected_tents to a dictionary
-            selected_tents_dict = json.loads(selected_tents)
+            st.write("selected_tents", selected_tents)
+            # selected_tents_dict = json.loads(selected_tents)
             
             score_lead(model, process_input_data(template_data_df))
 
