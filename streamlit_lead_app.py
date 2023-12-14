@@ -63,7 +63,7 @@ def connect_to_snowflake():
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 
 # Function to process selected created date
-def process_selected_created_date(selected_date):
+def process_selected_created_date(selected_created_date):
     # Assuming the format is "datetime.date(YYYY, MM, DD)"
     # Extract the date components
     # date_parts = selected_date_str.strip("datetime.date()").split(',')
@@ -72,12 +72,19 @@ def process_selected_created_date(selected_date):
     # date_obj = datetime.date(year, month, day)
 
     # Extract year, month, week number, and day
-    pr_createdyear = selected_date.year
-    pr_createdmonth = selected_date.month
-    pr_createdweek = selected_date.isocalendar()[1]
-    pr_createdday = selected_date.day
+    pr_createdyear = selected_created_date.year
+    pr_createdmonth = selected_created_date.month
+    pr_createdweek = selected_created_date.isocalendar()[1]
+    pr_createdday = selected_created_date.day
 
     return pr_createdyear, pr_createdmonth, pr_createdweek, pr_createdday
+
+def process_selected_time(selected_time):
+    
+    # Extract hour
+    pr_hour = selected_time.hour
+    
+    return pr_hour
 
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
@@ -97,7 +104,16 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'CREATEDMONTH'] = pr_month
     processed_data.loc[0, 'CREATEDWEEK'] = pr_week
     processed_data.loc[0, 'CREATEDDAY'] = pr_day
-        
+
+    # Extract SELECTEDTIME value
+    selected_time = submitted_values_df.loc[0, 'SELECTEDTIME']
+
+    # Process the SELECTEDTIME
+    pr_hour = process_selected_time(selected_time)
+    st.write('Hour', pr_hour)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'CREATEDHOUR'] = pr_hour        
     
     return processed_data
 
