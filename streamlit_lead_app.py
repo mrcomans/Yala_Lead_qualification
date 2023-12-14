@@ -75,7 +75,7 @@ def process_selected_created_date(selected_created_date):
     pr_createdyear = selected_created_date.year
     pr_createdmonth = selected_created_date.month
     pr_createdweek = selected_created_date.isocalendar()[1]
-    pr_createdday = selected_created_date.selected_created_date.isoweekday()
+    pr_createdday = selected_created_date.isoweekday()
 
     return pr_createdyear, pr_createdmonth, pr_createdweek, pr_createdday
 
