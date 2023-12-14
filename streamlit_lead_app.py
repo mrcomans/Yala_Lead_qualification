@@ -126,8 +126,11 @@ def process_selected_mail(selected_mail):
         'yahoo.com.sg', 'hotmail.it', 'googlemail.com', 'hotmail.nl', 'ziggo.nl'
     ]
 
-    domain = F.regexp_extract(selected_mail, '@([a-zA-Z0-9.-]+)$', 1)
-    email_type =  F.when(domain.isin(private_domains), "PRIVATE").otherwise("BUSINESS")
+    # Extract the domain from the email
+    domain = selected_mail.split('@')[-1]
+
+    # Determine email type
+    email_type = "PRIVATE" if domain in private_domains else "BUSINESS"
     
     return email_type
 
