@@ -93,6 +93,10 @@ def process_selected_lead_description(selected_lead_description):
     
     return float(round(pr_selected_lead_description_norm, 4))
 
+def process_selected_leadsourceid(selected_leadsourceid):
+    
+    return selected_leadsourceid
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
@@ -135,6 +139,16 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'LEN_LEADDESC_NORM'] = pr_selected_lead_description_norm 
     st.write('Leaddescription norm', pr_selected_lead_description_norm)
            
+    # Extract SELECTEDLEADSOURCEID value
+    selected_leadsourceid = submitted_values_df.loc[0, 'SELECTEDLEADSOURCEID']
+
+    # Process the SELECTEDLEADSOURCEID
+    pr_selected_leadsourceid = process_selected_leadsourceid(selected_leadsourceid)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'LS_'+ pr_selected_leadsourceid] = 1.0 
+    st.write('leadsourceid', pr_selected_leadsourceid)
+
     
     return processed_data
 
