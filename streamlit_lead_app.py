@@ -97,6 +97,14 @@ def process_selected_leadsourceid(selected_leadsourceid):
     
     return selected_leadsourceid
 
+def process_selected_country(selected_country):
+    
+    # Convert to uppercase and replace spaces with underscores
+    pr_selected_country = selected_country.upper().replace(" ", "_")
+    
+    return pr_selected_country
+
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
@@ -148,7 +156,17 @@ def process_input_data(template_data_df, submitted_values_df):
     # Update the processed_data DataFrame
     processed_data.loc[0, 'LS_'+ str(pr_selected_leadsourceid)] = 1.0 
     st.write('leadsourceid', pr_selected_leadsourceid)
-    
+
+   # Extract SELECTEDCOUNTRY value
+    selected_country = submitted_values_df.loc[0, 'SELECTEDCOUNTRY']
+
+    # Process the SELECTEDCOUNTRY
+    pr_selected_country = process_selected_country(selected_country)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'AD_'+ pr_selected_country] = 1.0 
+    st.write('country', pr_selected_country)
+        
     return processed_data
 
 # Function to score the lead
