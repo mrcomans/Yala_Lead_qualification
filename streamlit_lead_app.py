@@ -159,7 +159,7 @@ def main():
             # Define model name and version
             model_name = "leads_model"
             model_version = "1"
-            if not model:
+            if model is None or not model:
                 model = load_model_from_registry(model_name, model_version)
 
             # Collect all form data into a dictionary
