@@ -144,7 +144,7 @@ def main():
     # Webform creation
     selected_created_date = st.date_input("Created Date")
     # Time Input
-    selected_time = st.time_input("Created Time", time(8, 45))  # Default time is 08:45
+    selected_time = st.time_input("Created Time", datetime.time(8, 45))  # Default time is 08:45
     st.write("Selected Time:", selected_time)
 
     selected_lead_description = st.text_area("Lead Description")
