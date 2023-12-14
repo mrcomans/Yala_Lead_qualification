@@ -134,9 +134,9 @@ def process_selected_mail(selected_mail):
     
     return email_type
 
-def process_selected_tenttypes(selected_tenttypes):
+def process_selected_tents(selected_tent):
     
-    return selected_tenttypes
+    return selected_tent
 
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
@@ -190,15 +190,32 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'LS_'+ str(pr_selected_leadsourceid)] = 1.0 
     st.write('leadsourceid', pr_selected_leadsourceid)
 
-##### TODO Extract SELECTEDTENTTYPES value
-    # selected_tenttypes = submitted_values_df.loc[0, 'SELECTEDTENTTYPES']
+##### TODO Extract SELECTEDTENTS value
+    selected_tents = submitted_values_df.loc[0, 'SELECTEDTENTS']
 
-    # Process the SELECTEDTENTTYPES
-    # pr_selected_tenttypes = process_selected_tenttypes(selected_tenttypes)
+    # Assuming process_selected_tents function processes each tent name
+    # and returns a processed string (e.g., 'SPARKLE' -> 'SPARKLE_PROCESSED')
+
+    for tent in selected_tents:
+        # Process each selected tent
+        pr_selected_tent = process_selected_tents(tent)
+
+        # Update the processed_data DataFrame
+        processed_data.loc[0, 'TENT_TYPE_ENCODED_' + str(pr_selected_tent)] = 1.0
+
+        # Write the processed tent to Streamlit output
+        st.write('tent', pr_selected_tent)
+
+    # selected_tents = submitted_values_df.loc[0, 'SELECTEDTENTS']
+
+    # For each statement to iterate through the selected_tents array?
+    # Process the SELECTEDTENTS
+    # pr_selected_tent = process_selected_tents(selected_tents)
 
     # Update the processed_data DataFrame
-    # processed_data.loc[0, 'TENT_TYPE_ENCODED_'+ str(pr_selected_tenttypes)] = 1.0 
-    # st.write('tenttypes', pr_selected_tenttypes)
+    # processed_data.loc[0, 'TENT_TYPE_ENCODED_'+ str(pr_selected_tent)] = 1.0
+    # cycle through till te end of the array? 
+    # st.write('tents', pr_selected_tent)
 
 ##### Extract SELECTEDCOUNTRY value
     selected_country = submitted_values_df.loc[0, 'SELECTEDCOUNTRY']
