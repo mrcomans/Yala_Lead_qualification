@@ -113,13 +113,13 @@ def main():
     model = load_model_from_registry(model_name, model_version)
 
     # Webform creation
-    created_date = st.date_input("Created Date")
+    selected_created_date = st.date_input("Created Date")
     # Time Input
     selected_time = st.time_input("Created Time", time(8, 45))  # Default time is 08:45
     st.write("Selected Time:", selected_time)
 
-    lead_description = st.text_area("Lead Description")
-    lead_source_id = st.selectbox("Lead Source ID", [3367610, 2973396, 3314817, 2973397, 2985685, 3306719, 3377551, 3377552, 3377553, 3306720, 3418055, 3418056, 2985683, 2973398, 3056470, 3306721])  # Add all options
+    selected_lead_description = st.text_area("Lead Description")
+    selected_lead_source_id = st.selectbox("Lead Source ID", [3367610, 2973396, 3314817, 2973397, 2985685, 3306719, 3377551, 3377552, 3377553, 3306720, 3418055, 3418056, 2985683, 2973398, 3056470, 3306721])  # Add all options
     # Add other form fields...
     
     # Multiselect for Tent Types
@@ -143,28 +143,30 @@ def main():
     st.write("You selected:", selected_event)
 
     # Gender selection using radio buttons
-    gender = st.radio("Gender", ["Male", "Female", "Other"])
-    st.write("You selected:", gender)
+    selected_gender = st.radio("Gender", ["Male", "Female", "Other"])
+    st.write("You selected:", selected_gender)
     
     # Text input for email
-    email = st.text_input("Email Address")
+    selected_email = st.text_input("Email Address")
 
     # Validate email
-    if email:  # Check if email is not empty
-        if is_valid_email(email):
+    if selected_email:  # Check if email is not empty
+        if is_valid_email(selected_email):
             st.success("Valid Email Address")
         else:
             st.error("Invalid Email Address")
 
     # Submit button
     if st.button("Score lead"):
-        if email and is_valid_email(email):
+        if selected_email and is_valid_email(selected_email):
             # Collect all form data into a dictionary
             # Convert JSON to pandas DataFrame
-            form_data_df = pd.DataFrame.from_dict(data)
+            template_data_df = pd.DataFrame.from_dict(data)
             # Process the form data
-            
-            score_lead(model, process_input_data(form_data_df))
+            # form field values (): 
+            #   selected_created_date, selected_time, selected_lead_description, selected_lead_source_id, 
+            #   selected_tents, selected_country, selected_event, selected_gender, selected_email
+            score_lead(model, process_input_data(template_data_df))
 
         else:
             st.error("Please enter a valid email address.")
