@@ -146,8 +146,8 @@ def process_input_data(template_data_df, submitted_values_df):
     pr_selected_leadsourceid = process_selected_leadsourceid(selected_leadsourceid)
 
     # Update the processed_data DataFrame
-    processed_data.loc[0, 'LS_'+ pr_selected_leadsourceid] = 1.0 
-    st.write('leadsourceid', pr_selected_leadsourceid)
+    processed_data.loc[0, 'LS_'+ str(pr_selected_leadsourceid)] = 1.0 
+    st.write('leadsourceid', str(pr_selected_leadsourceid))
 
     
     return processed_data
