@@ -108,6 +108,10 @@ def process_selected_event(selected_event):
     
     return selected_event
 
+def process_selected_gender(selected_gender):
+    
+    return selected_gender
+
 # Function to process form data to match model input format
 def process_input_data(template_data_df, submitted_values_df):
     # Process the form_data to match the model input format
@@ -180,6 +184,16 @@ def process_input_data(template_data_df, submitted_values_df):
     processed_data.loc[0, 'EVENT_ENCODED_'+ pr_selected_event] = 1.0 
     st.write('event', pr_selected_event)
 
+    # Extract SELECTEDGENDER value
+    selected_gender = submitted_values_df.loc[0, 'SELECTEDGENDER']
+
+    # Process the SELECTEDGENDER
+    pr_selected_gender = process_selected_gender(selected_gender)
+
+    # Update the processed_data DataFrame
+    processed_data.loc[0, 'GENDER_ENCODED_'+ pr_selected_gender] = 1.0 
+    st.write('gender', pr_selected_gender)
+    
     st.write(processed_data)
         
     return processed_data
