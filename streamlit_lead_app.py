@@ -181,9 +181,8 @@ def main():
             }
             submitted_values_df = pd.DataFrame.from_dict(form_data)            
             # selected_tents_dict = json.loads(selected_tents)
-            
-            score_lead(model, process_input_data(template_data_df, submitted_values_df))
-
+            if not model:
+                score_lead(model, process_input_data(template_data_df, submitted_values_df))
         else:
             st.error("Please enter a valid email address.")
         
