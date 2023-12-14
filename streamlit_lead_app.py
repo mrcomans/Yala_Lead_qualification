@@ -159,7 +159,8 @@ def main():
             # Define model name and version
             model_name = "leads_model"
             model_version = "1"
-            model = load_model_from_registry(model_name, model_version)
+            if not model:
+                model = load_model_from_registry(model_name, model_version)
 
             # Collect all form data into a dictionary
             # Convert JSON to pandas DataFrame
@@ -181,8 +182,7 @@ def main():
             }
             submitted_values_df = pd.DataFrame.from_dict(form_data)            
             # selected_tents_dict = json.loads(selected_tents)
-            if not model:
-                score_lead(model, process_input_data(template_data_df, submitted_values_df))
+            score_lead(model, process_input_data(template_data_df, submitted_values_df))
         else:
             st.error("Please enter a valid email address.")
         
