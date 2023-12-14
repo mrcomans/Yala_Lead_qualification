@@ -162,10 +162,13 @@ def main():
             # Collect all form data into a dictionary
             # Convert JSON to pandas DataFrame
             template_data_df = pd.DataFrame.from_dict(data)
-            # Process the form data
+            # Gather the form data
             # form field values (): 
             #   selected_created_date, selected_time, selected_lead_description, selected_lead_source_id, 
             #   selected_tents, selected_country, selected_event, selected_gender, selected_email
+            # Convert the JSON string in selected_tents to a dictionary
+            selected_tents_dict = json.loads(selected_tents)
+            
             score_lead(model, process_input_data(template_data_df))
 
         else:
