@@ -1,7 +1,7 @@
 {
   "__accountComment_"  : "enter your 'account' copied from Snowsight: https://docs.snowflake.com/en/user-guide/admin-account-identifier#finding-the-organization-and-account-name-for-an-account",
   "__accountComment2_" : "then replace '.' with '-' ",
-  "account"            : "ANIPTVF-BJ57144",
+  "account"            : "IUXSIKR-DJ96905",
   "__userComment_"     : "enter your user name",
   "user"               : "MARK1971",
   "__credComment_"     : "either enter your password if you are confident it's safe to store it, or use externalbrowser authenticator",
